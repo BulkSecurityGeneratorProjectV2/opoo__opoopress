@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.Map;
 
@@ -42,7 +43,7 @@ public class FileCachedSource implements Source {
 
         FileOutputStream stream = null;
         try {
-            this.contentFile = File.createTempFile("CachedSource", ".bin");
+            this.contentFile = Files.createTempFile("CachedSource", ".bin").toFile();
             stream = new FileOutputStream(contentFile);
             IOUtils.write(content, stream, "UTF-8");
         } catch (IOException e) {
@@ -58,7 +59,7 @@ public class FileCachedSource implements Source {
         this.origin = origin;
         FileOutputStream stream = null;
         try {
-            this.contentFile = File.createTempFile("PageContent", ".bin");
+            this.contentFile = Files.createTempFile("PageContent", ".bin").toFile();
             stream = new FileOutputStream(contentFile);
             IOUtils.writeLines(contentLines, null, stream);
         } catch (IOException e) {

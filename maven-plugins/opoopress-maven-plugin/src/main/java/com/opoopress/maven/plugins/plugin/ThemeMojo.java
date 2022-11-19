@@ -40,6 +40,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -408,7 +409,7 @@ public class ThemeMojo extends AbstractOpooPressMojo {
 
     protected File downloadHttpFile(URL url) throws MojoFailureException {
         try {
-            File tempFile = File.createTempFile("tempOpooPressTheme", ".zip");
+            File tempFile = Files.createTempFile("tempOpooPressTheme", ".zip").toFile();
 
             //1. simplest way, no output
             //FileUtils.copyURLToFile(url, tempFile);

@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -187,7 +188,7 @@ public class YUIBuilder implements ResourceBuilder, Observer {
             //multiple files， compress and merge
             List<File> tempOutputFiles = new ArrayList<File>();
             for (File inputFile : inputFiles) {
-                File tempOutputFile = File.createTempFile("op-YUIBuilder-", "." + type);
+                File tempOutputFile = Files.createTempFile("op-YUIBuilder-", "." + type).toFile();
                 tempOutputFiles.add(tempOutputFile);
 
                 compressIfRequired(inputFile, tempOutputFile);
